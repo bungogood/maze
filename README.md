@@ -63,9 +63,11 @@ Data Structures:
 
 ```
 ├── .obj/
-│   └── <objects>
+│   └── <objects.o>
 ├── include/
-│   └── <cfiles.h>
+│   └── <headers.h>
+├── mazes/
+│   └── <mazes.png>
 ├── src/
 │   ├── datastructs/
 │   │   ├── stack.c
@@ -91,8 +93,6 @@ Data Structures:
 │   ├── color.c
 │   ├── maze.c
 │   └── main.c
-├── mazes/
-│   └── <mazes.png>
 ├── .gitignore
 ├── makefile
 ├── maze
