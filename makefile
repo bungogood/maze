@@ -1,25 +1,34 @@
-IDIR = include
-ODIR = .obj
-SDIR = src
+SRC_DIR := src
+BIN_DIR := .
+LIB_DIR := lib
+INC_DIR := inc
+OBJ_DIR := .obj
 
 LIBS = -lpng
 
-CC = gcc
-CFLAGS = -I $(IDIR)
+TARGET  := $(BIN_DIR)/maze
 
-_DEPS =
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
+CXX = gcc
+CXXFLAGS = -c -g -Wall
 
-_OBJ = main.o maze.o generate.o solve.o data.o color.o parse.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+SOURCES := $(shell find $(SRC_DIR) -name "*.c")
+OBJECTS := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SOURCES))
+HEADERS := $(shell find $(INC_DIR) -name "*.h")
+# sort is just to remove duplicates. Not necessary, but tidy
+HEADERDIRS := $(sort $(dir $(HEADERS)))
+INCLUDEFLAGS := $(addprefix -I,$(HEADERDIRS))
 
-$(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+.PHONY: all clean
 
-maze: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+all: $(TARGET)
 
-.PHONY: clean
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
+	@$(CXX) $< $(INCLUDEFLAGS) -o $@ $(CXXFLAGS)
+
+$(TARGET): $(OBJECTS)
+	@mkdir -p $(@D)
+	$(CXX) $^ -o $@ $(LIBS)
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~
+	rm -f $(OBJECTS) $(TARGET)
