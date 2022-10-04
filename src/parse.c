@@ -1,15 +1,5 @@
-#include "data.h"
+#include "datastructs.h"
 #include "maze.h"
-
-void print_maze (maze* m) {
-  for (int r = 0; r < m->height; r++) {
-    for (int c = 0; c < m->width; c++) {
-      if (m->image[r][3*c]) printf("██");
-      else printf("  ");
-    }
-    printf("\n");
-  }
-}
 
 graph* parse (maze* m) {
   int r, c;

@@ -1,5 +1,19 @@
 #include "maze.h"
 
+void print_maze (maze* m) {
+  for (int r = 0; r < m->height; r++) {
+    for (int c = 0; c < m->width; c++) {
+      if (m->image[r][3*c]) printf("██");
+      else printf("  ");
+    }
+    printf("\n");
+  }
+}
+
+bool isPath(maze* m , int r, int c) {
+  return m->image[r][c*3] || m->image[r][c*3+1] || m->image[r][c*3+2];
+}
+
 maze* create_maze_gray(int width, int height) {
   maze* m = malloc(sizeof(maze));
   m->width = width;

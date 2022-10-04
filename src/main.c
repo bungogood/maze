@@ -5,7 +5,7 @@
 #include "maze.h"
 #include "parse.h"
 #include "color.h"
-#include "data.h"
+#include "datastructs.h"
 
 void generate(int argc, char **argv) {
   // optional seed
@@ -13,7 +13,8 @@ void generate(int argc, char **argv) {
   int width = atoi(argv[1]);
   int height = argc == 3 ? atoi(argv[2]) : width;
   printf("generator %d %d\n", width, height);
-  maze* m = bin_tree_maze(width, height);
+  // maze* m = bin_tree_maze(width, height);
+  maze* m = gen_prim(width, height);
   write_png(filename, m);
 }
 
@@ -88,4 +89,5 @@ int main(int argc, char** argv) {
   } else if (!strcmp(command,"color")) {
     color(argc-2, argv+2);
   }
+  printf("hello\n");
 }

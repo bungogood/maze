@@ -22,6 +22,7 @@ bool dfs(graph* g) {
       if (v->edges[i] != NULL && !v->edges[i]->seen) {
         v->edges[i]->seen = true;
         v->edges[i]->prev = v;
+        // color
         spush(q, v->edges[i]);
       }
     }
@@ -51,6 +52,7 @@ bool bfs(graph* g) {
       if (v->edges[i] != NULL && !v->edges[i]->seen) {
         v->edges[i]->seen = true;
         v->edges[i]->prev = v;
+        // color
         enqueue(q, v->edges[i]);
       }
     }
