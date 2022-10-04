@@ -1,5 +1,7 @@
 # Maze
 
+![Build](https://github.com/Bungogood/maze/actions/workflows/make.yml/badge.svg)
+
 Inspired by a Computerphile [video](https://youtu.be/rop0W4QDOUI).
 
 ## Usage
